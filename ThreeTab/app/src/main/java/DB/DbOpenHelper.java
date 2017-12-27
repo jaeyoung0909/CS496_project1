@@ -2,6 +2,7 @@ package DB;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -59,6 +60,8 @@ public class DbOpenHelper {
         values.put(DataBases.CreateDB.CONTACT, contact);
         return mDB.insert(DataBases.CreateDB._TABLENAME, null, values);
     }
-
+    public Cursor getAllColumns(){
+        return mDB.query(DataBases.CreateDB._TABLENAME, null, null,null,null,null,null);
+    }
 }
 

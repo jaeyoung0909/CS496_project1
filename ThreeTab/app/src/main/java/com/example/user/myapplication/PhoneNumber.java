@@ -21,6 +21,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import DB.DbOpenHelper;
+
 public class PhoneNumber extends AppCompatActivity {
     private ListViewAdapter adapter;
     private ListView listview;
@@ -28,7 +30,7 @@ public class PhoneNumber extends AppCompatActivity {
     private ArrayList<ListViewItem> arraylist;
     private List<String> list1;
     private Cursor mCursor;
-
+    private DbOpenHelper mDbopenHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +118,9 @@ public class PhoneNumber extends AppCompatActivity {
     }
 
     private void settingList(){
+        //mCursor = null;
+        mCursor = mDbopenHelper.getAllColumns();
+
         list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"IU1", "01036616302"));
         list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"ab", "01036616302"));
         list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"cd", "01036616302"));
@@ -124,11 +129,13 @@ public class PhoneNumber extends AppCompatActivity {
         list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"abdcc", "01036616302"));
         list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"aaaadd", "01036616302"));
 
-        while (mCursor.moveToNext()) {
-            list.add(mlistview(ContextCompat.getDrawable(this,R.drawable.iu), mCursor.getString(mCursor.getColumnIndex("name")), mCursor.getString(mCursor.getColumnIndex("contact"))));
+        if(mCursor != null) {
+            if (mCursor.moveToFirst()) {
+                do {
+                    list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu), mCursor.getString(mCursor.getColumnIndex("name")), mCursor.getString(mCursor.getColumnIndex("contact"))));
+                } while (mCursor.moveToNext());
+            }
         }
-
-
     }
     public ListViewItem mlistview(Drawable icon, String title, String desc){
         ListViewItem item = new ListViewItem();
