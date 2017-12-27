@@ -13,21 +13,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
-
-
     public void Button_number(View view) {
         Intent intent = new Intent(this, PhoneNumber.class);
         startActivity(intent);
-
     }
-
     public void Button_picture(View view) {
         Intent intent = new Intent(this, Picture.class);
         startActivity(intent);
-
     }
-
     public void sendMessage(View view){
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = findViewById(R.id.textView);
