@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,8 @@ public class PhoneNumber extends AppCompatActivity {
     private List<ListViewItem> list;
     private ArrayList<ListViewItem> arraylist;
     private List<String> list1;
+    private Cursor mCursor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +123,12 @@ public class PhoneNumber extends AppCompatActivity {
         list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"abcd", "01036616302"));
         list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"abdcc", "01036616302"));
         list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"aaaadd", "01036616302"));
+
+        while (mCursor.moveToNext()) {
+            list.add(mlistview(ContextCompat.getDrawable(this,R.drawable.iu), mCursor.getString(mCursor.getColumnIndex("name")), mCursor.getString(mCursor.getColumnIndex("contact"))));
+        }
+
+
     }
     public ListViewItem mlistview(Drawable icon, String title, String desc){
         ListViewItem item = new ListViewItem();

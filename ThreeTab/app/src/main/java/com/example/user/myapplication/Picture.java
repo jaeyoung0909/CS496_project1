@@ -40,7 +40,7 @@ public class Picture extends AppCompatActivity implements View.OnClickListener{
             R.drawable.sample_4, R.drawable.sample_5,
             R.drawable.sample_6, R.drawable.sample_7
     };
-
+    private Bitmap photo = null;
     private Context mContext;
     private static final int PICK_FROM_ALBUM = 1;
     private static final int CROP_FROM_iMAGE = 2;
