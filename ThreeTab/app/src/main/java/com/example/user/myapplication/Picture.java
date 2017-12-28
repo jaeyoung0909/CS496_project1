@@ -44,6 +44,7 @@ public class Picture extends AppCompatActivity implements View.OnClickListener{
     private Context mContext;
     private static final int PICK_FROM_ALBUM = 1;
     private static final int CROP_FROM_iMAGE = 2;
+    int i;
 
     private Uri mlmageCaptureUri;
     private String absolutePath;
@@ -57,14 +58,17 @@ public class Picture extends AppCompatActivity implements View.OnClickListener{
 
         gridview.setOnItemClickListener(new OnItemClickListener(){
             public void onItemClick(AdapterView<?> parents, View v, int position, long id){
-
                 Toast.makeText(Picture.this, "" + position,
                         Toast.LENGTH_SHORT).show();
+
+
             }
         });
-        Button btn_agreeJoin = (Button)this.findViewById(R.id.button3);
 
+
+        Button btn_agreeJoin = (Button)this.findViewById(R.id.button3);
         btn_agreeJoin.setOnClickListener(this);
+
     }
 
     public void doTakeAlbumAction(){
@@ -155,6 +159,7 @@ public class Picture extends AppCompatActivity implements View.OnClickListener{
 
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
+            i = position;
             ImageView imageView;
             if(view == null){
                 imageView = new ImageView(mContext);
@@ -164,8 +169,10 @@ public class Picture extends AppCompatActivity implements View.OnClickListener{
             } else{
                 imageView = (ImageView) view;
             }
-
+            ImageClickListener imageViewClickListener = new ImageClickListener(mContext, mThumbIds[position]);
+            imageView.setOnClickListener(imageViewClickListener);
             imageView.setImageResource(mThumbIds[position]);
+
             return imageView;
         }
 
