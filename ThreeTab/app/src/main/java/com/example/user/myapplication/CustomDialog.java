@@ -3,6 +3,7 @@ package com.example.user.myapplication;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -24,6 +25,7 @@ public class CustomDialog extends PhoneNumber
 {
     private Context context;
     private DbOpenHelper mDbOpenHelper;
+    private SharedPreferences sp;
     public CustomDialog(Context context){
         this.context = context;
     }
@@ -32,8 +34,11 @@ public class CustomDialog extends PhoneNumber
         final Dialog dig = new Dialog(context);
 
         dig.requestWindowFeature(Window.FEATURE_NO_TITLE);
-/*        SharedPreferences sp = getSharedPreferences("loadphone", 0);
-        final SharedPreferences.Editor editor = sp.edit();*/
+      /*  SharedPreferences sp = getSharedPreferences("loadphone", PhoneNumber.MODE_PRIVATE);
+        //sp = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences.Editor editor = sp.edit();
+        editor.putString("key", "value");
+        editor.apply();*/
 
         dig.setContentView(R.layout.custom_dialog);
         dig.show();
@@ -43,18 +48,17 @@ public class CustomDialog extends PhoneNumber
         final EditText phone = (EditText) dig.findViewById(R.id.phonenumber);
         final Button okButton = (Button) dig.findViewById(R.id.okButton);
         final Button canceButton = (Button) dig.findViewById(R.id.cancelButton);
-        mDbOpenHelper = new DbOpenHelper(this);
-        mDbOpenHelper.open();
+/*        mDbOpenHelper = new DbOpenHelper(this);
+        mDbOpenHelper.open();*/
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //확인 버튼 클릭시 메인 액티비티에서 설정한 main_label에
                 //커스텀 다이얼로그에서 입력한 메시지를 대입한다.
-               /* editor.putString("name", name.getText().toString());
+         /*       editor.putString("name", name.getText().toString());
                 editor.putString("phone", phone.getText().toString());
                 editor.commit();*/
-
-                mDbOpenHelper.insertColumn(name.getText().toString(), phone.getText().toString());
+                /*mDbOpenHelper.insertColumn(name.getText().toString(), phone.getText().toString());*/
                 Toast toast = Toast.makeText(context, "추가하였습니다.", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL,0,0);
                 toast.show();

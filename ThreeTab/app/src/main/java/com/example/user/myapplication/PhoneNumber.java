@@ -39,13 +39,19 @@ public class PhoneNumber extends AppCompatActivity {
         final EditText editSearch = (EditText) findViewById(R.id.editSearch);
         listview = (ListView) findViewById(R.id.listview1);
         list = new ArrayList<>();
-        /*SharedPreferences prefer = getSharedPreferences("loadphone",0);
+/*        SharedPreferences prefer = getSharedPreferences("loadphone",0);
         String val1 = prefer.getString("name",null);
         String val2 = prefer.getString("phone",null);
         list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),val1,val2));
         SharedPreferences.Editor editor = prefer.edit();
         editor.clear();
         editor.commit();*/
+        Intent intent = getIntent();
+        String val1 = intent.getStringExtra("name");
+        String val2 = intent.getStringExtra("phone");
+        if(val1!=null && val2!=null){
+            list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu), val1, val2));
+        }
         settingList();
 
         list1 = new ArrayList<>();
@@ -56,10 +62,10 @@ public class PhoneNumber extends AppCompatActivity {
             public void onClick(View view) {
                 //커스텀 다이얼로그를 생성한다.
                 CustomDialog customDialog = new CustomDialog(PhoneNumber.this);
-
                 customDialog.callFunction(list1);
             }
         });
+        
 
         //복사
         arraylist = new ArrayList<ListViewItem>();
@@ -98,7 +104,10 @@ public class PhoneNumber extends AppCompatActivity {
             }
         });*/
     }
-
+    public void Button_add(View view) {
+        Intent intent = new Intent(this, phonenumber2.class);
+        startActivity(intent);
+    }
     public void search(String charText){
         list.clear();
         if(charText.length()==0){
@@ -118,24 +127,21 @@ public class PhoneNumber extends AppCompatActivity {
     }
 
     private void settingList(){
-        //mCursor = null;
+/*
+        mCursor = null;
         mCursor = mDbopenHelper.getAllColumns();
-
-        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"IU1", "01036616302"));
-        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"ab", "01036616302"));
-        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"cd", "01036616302"));
-        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"abc", "01036616302"));
+*/
         list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"abcd", "01036616302"));
         list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"abdcc", "01036616302"));
         list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"aaaadd", "01036616302"));
-
+/*
         if(mCursor != null) {
             if (mCursor.moveToFirst()) {
                 do {
                     list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu), mCursor.getString(mCursor.getColumnIndex("name")), mCursor.getString(mCursor.getColumnIndex("contact"))));
                 } while (mCursor.moveToNext());
             }
-        }
+        }*/
     }
     public ListViewItem mlistview(Drawable icon, String title, String desc){
         ListViewItem item = new ListViewItem();
