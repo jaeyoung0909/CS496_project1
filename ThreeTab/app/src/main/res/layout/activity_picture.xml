@@ -9,17 +9,19 @@
     <GridView
         android:id="@+id/gridview"
         android:layout_width="fill_parent"
-        android:layout_height="0dip"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:clipChildren="true"
-        android:columnWidth="100dp"
+        android:columnWidth="108dp"
         android:gravity="center"
         android:numColumns="auto_fit"
+        android:verticalSpacing="10dip"
+        android:horizontalSpacing = "17dip"
         android:scrollbars="none"
         android:stretchMode="columnWidth" >
     </GridView>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -36,6 +38,6 @@
             android:layout_marginTop="8dp"
             android:text="picture"
              />
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
