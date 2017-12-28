@@ -11,45 +11,99 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.TextView;
 
 public class DisplayMessageActivity extends AppCompatActivity {
-
-    @Override
+   /* private Button white;
+    private Button black;
+    private Button replay;*/
+    private int[][] arr2D= new int[19][19];
+    private int[][] arr2D_copy = new int[19][19];
+    private int recenti;
+    private int recentj;
+    private boolean flagStone=true;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_display_message);
         setContentView(new OmokView(this));
+        LayoutInflater inflater = getLayoutInflater();
+        addContentView(LayoutInflater.from(this).inflate(R.layout.omok,null), new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
+  /*      replay = (Button)findViewById(R.id.replay);
+        white = (Button) findViewById(R.id.ripple1);
+        black = (Button)findViewById(R.id.ripple2);*/
     }
+    public void replaybutton(View view){
+        for(int i=0;i<17;i++){
+            for(int j=0;j<17;j++){
+                arr2D[i+1][j+1]=0;
+            }
+        }
+    }
+
+    public void whitebutton(View view){
+        int flag =0;
+        for(int z=0;z<17;z++){
+            for(int x=0;x<17;x++){
+                if(arr2D[z][x]!=0 && arr2D_copy[z][x]==0){
+                   arr2D[z][x] = 0;
+                   flagStone = !flagStone;
+                   flag = 1;
+                }
+                else{
+                }
+            }
+        }
+        if(flag==0) {
+            Toast toast = Toast.makeText(this, "안됩니다.", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL,0,0);
+            toast.show();
+        }
+
+    }
+
+
     class OmokView extends View{
         Context context;
-        int[][] arr2D = new int[101][101];
+
         Bitmap bitmapEmpty = BitmapFactory.decodeResource(getResources(), R.drawable.panelempty);
-        Bitmap bitmapEmpty1 = Bitmap.createScaledBitmap(bitmapEmpty,400,400,true);
+        Bitmap bitmapEmpty1 = Bitmap.createScaledBitmap(bitmapEmpty,80,80,true);
         Bitmap bitmapWhite = BitmapFactory.decodeResource(getResources(), R.drawable.stonewhite);
-        Bitmap bitmapWhite1 = Bitmap.createScaledBitmap(bitmapWhite,40,40,true);
+        Bitmap bitmapWhite1 = Bitmap.createScaledBitmap(bitmapWhite,80,80,true);
         Bitmap bitmapBlack = BitmapFactory.decodeResource(getResources(), R.drawable.stoneblack);
-        Bitmap bitmapBlack1 = Bitmap.createScaledBitmap(bitmapBlack,40,40,true);
-        boolean flagStone = true;
+        Bitmap bitmapBlack1 = Bitmap.createScaledBitmap(bitmapBlack,80,80,true);
+//        boolean
+
+
         @Override
         public boolean onTouchEvent(MotionEvent event) {
             int x = (int) event.getX();
             int y = (int) event.getY();
-
+//      System.out.println("x:"+x);
+//      System.out.println("y:"+y);
             int i = 999;
             int j = 999;
             for(int k=0; k<=99 ; k++){
-                if(35*k<x&&x<=35*(k+1)){
+                if(80*k<x&&x<=80*(k+1)){
                     j=k;
                 }
-                if(35*k<y&&y<=35*(k+1)){
+                if(80*k<y&&y<=80*(k+1)){
                     i=k;
                 }
             }
+            for(int z=0;z<17;z++){
+                for(int l=0;l<17;l++){
+                    arr2D_copy[z][l] = arr2D[z][l];
+                }
+            }
+
             if(!(i==999||j==999)&&arr2D[i+1][j+1]==0){
                 if(flagStone){
                     arr2D[i+1][j+1]=1;
@@ -58,6 +112,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
                 }
                 if(isGameOver(i+1,j+1)){
                     Toast toast = Toast.makeText(context, "수고하셨습니다.", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL,0,0);
                     toast.show();
                 }
                 invalidate();
@@ -68,12 +123,17 @@ public class DisplayMessageActivity extends AppCompatActivity {
         }
         @Override
         protected void onDraw(Canvas canvas) {
-            for(int i=0;i<99;i++){
-                for(int j=0;j<99;j++){
-                    if(arr2D[i+1][j+1]==0){ canvas.drawBitmap(bitmapEmpty, j*35, i*35, new Paint());}
-                    if(arr2D[i+1][j+1]==1){ canvas.drawBitmap(bitmapWhite1, j*35, i*35, new Paint());}
-                    if(arr2D[i+1][j+1]==2){ canvas.drawBitmap(bitmapBlack1, j*35, i*35, new Paint());}
-
+            for(int i=0;i<17;i++){
+                for(int j=0;j<17;j++){
+                    if(arr2D[i+1][j+1]==0){
+                        canvas.drawBitmap(bitmapEmpty1, j*80, i*80, new Paint());
+                    }
+                    if(arr2D[i+1][j+1]==1){
+                        canvas.drawBitmap(bitmapWhite1, j*80, i*80, new Paint());
+                    }
+                    if(arr2D[i+1][j+1]==2){
+                        canvas.drawBitmap(bitmapBlack1, j*80, i*80, new Paint());
+                    }
                 }
             }
             super.onDraw(canvas);
