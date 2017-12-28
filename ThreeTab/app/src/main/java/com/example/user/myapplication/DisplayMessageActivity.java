@@ -39,8 +39,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
         public boolean onTouchEvent(MotionEvent event) {
             int x = (int) event.getX();
             int y = (int) event.getY();
-//      System.out.println("x:"+x);
-//      System.out.println("y:"+y);
+
             int i = 999;
             int j = 999;
             for(int k=0; k<=99 ; k++){
