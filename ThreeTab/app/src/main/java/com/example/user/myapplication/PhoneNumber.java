@@ -131,10 +131,10 @@ public class PhoneNumber extends AppCompatActivity {
         mCursor = null;
         mCursor = mDbopenHelper.getAllColumns();
 */
-        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"IRENE", "01099999999"));
-        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"gongyou", "01088888888"));
-        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"byunggyu", "01077777777"));
-        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu),"jihoon", "01036616302"));
+        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.irene),"IRENE", "01099999999"));
+        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.gongyou),"GONGYU", "01088888888"));
+        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.byunggyu),"Byung Gyu", "01077777777"));
+        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.jihoon),"Jihoon", "01036616302"));
 /*
         if(mCursor != null) {
             if (mCursor.moveToFirst()) {

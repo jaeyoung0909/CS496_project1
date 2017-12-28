@@ -36,7 +36,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
         setContentView(new OmokView(this));
         LayoutInflater inflater = getLayoutInflater();
         addContentView(LayoutInflater.from(this).inflate(R.layout.omok,null), new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
-  /*      replay = (Button)findViewById(R.id.replay);
+  /*    replay = (Button)findViewById(R.id.replay);
         white = (Button) findViewById(R.id.ripple1);
         black = (Button)findViewById(R.id.ripple2);*/
     }
@@ -66,28 +66,20 @@ public class DisplayMessageActivity extends AppCompatActivity {
             toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL,0,0);
             toast.show();
         }
-
     }
-
-
     class OmokView extends View{
         Context context;
-
         Bitmap bitmapEmpty = BitmapFactory.decodeResource(getResources(), R.drawable.panelempty);
         Bitmap bitmapEmpty1 = Bitmap.createScaledBitmap(bitmapEmpty,80,80,true);
         Bitmap bitmapWhite = BitmapFactory.decodeResource(getResources(), R.drawable.stonewhite);
         Bitmap bitmapWhite1 = Bitmap.createScaledBitmap(bitmapWhite,80,80,true);
         Bitmap bitmapBlack = BitmapFactory.decodeResource(getResources(), R.drawable.stoneblack);
         Bitmap bitmapBlack1 = Bitmap.createScaledBitmap(bitmapBlack,80,80,true);
-//        boolean
-
 
         @Override
         public boolean onTouchEvent(MotionEvent event) {
             int x = (int) event.getX();
             int y = (int) event.getY();
-//      System.out.println("x:"+x);
-//      System.out.println("y:"+y);
             int i = 999;
             int j = 999;
             for(int k=0; k<=99 ; k++){
@@ -273,7 +265,6 @@ public class DisplayMessageActivity extends AppCompatActivity {
             }
             return count;
         }
-
         private int getCountDown(int compensateI,int compensateJ){
             int count=0;
             int intStone = 2 ;
@@ -289,8 +280,6 @@ public class DisplayMessageActivity extends AppCompatActivity {
             }
             return count;
         }
-
-
     }
 }
 
