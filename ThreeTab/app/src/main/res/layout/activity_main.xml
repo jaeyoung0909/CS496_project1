@@ -8,7 +8,6 @@
     tools:context="com.example.user.myapplication.MainActivity">
 
 
-
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
@@ -25,7 +24,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.462" />
+        app:layout_constraintVertical_bias="0.449" />
 
     <Button
         android:id="@+id/button2"
@@ -53,14 +52,13 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/roundedbutton"
         android:onClick="sendMessage"
-        android:text="omoc"
+        android:text="omok"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.352" />
+        app:layout_constraintVertical_bias="0.014" />
 
 </android.support.constraint.ConstraintLayout>

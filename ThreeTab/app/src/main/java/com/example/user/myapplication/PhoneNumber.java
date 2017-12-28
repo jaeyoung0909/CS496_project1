@@ -50,13 +50,12 @@ public class PhoneNumber extends AppCompatActivity {
         String val1 = intent.getStringExtra("name");
         String val2 = intent.getStringExtra("phone");
         if(val1!=null && val2!=null){
-            list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu), val1, val2));
+//            list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.iu), val1, val2));
+            list.add(mlistview(R.drawable.iu, val1, val2));
         }
         settingList();
-
         list1 = new ArrayList<>();
         Button button = (Button) findViewById(R.id.diabutton);
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,8 +64,6 @@ public class PhoneNumber extends AppCompatActivity {
                 customDialog.callFunction(list1);
             }
         });
-        
-
         //복사
         arraylist = new ArrayList<ListViewItem>();
         arraylist.addAll(list);
@@ -91,18 +88,14 @@ public class PhoneNumber extends AppCompatActivity {
                 search(text);
             }
         });
-
-/*        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getApplicationContext(),  phoneclicked.class);
-                //outExtra의 첫 값은 식별 태그, 뒤에는 다음 화면에 넘길 값
-                //intent.putExtra("profile", ContextCompat.getDrawable(this, R.drawable.iu));
-                intent.putExtra("name", list.get(i).getTitle());
-                intent.putExtra("number", list.get(i).getDesc());
+                Intent intent = new Intent(getApplicationContext(),  phone_picture.class);
+                intent.putExtra("image",list.get(i).getIcon());
                 startActivity(intent);
             }
-        });*/
+        });
     }
     public void Button_add(View view) {
         Intent intent = new Intent(this, phonenumber2.class);
@@ -127,14 +120,13 @@ public class PhoneNumber extends AppCompatActivity {
     }
 
     private void settingList(){
-/*
-        mCursor = null;
-        mCursor = mDbopenHelper.getAllColumns();
-*/
-        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.irene),"IRENE", "01099999999"));
-        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.gongyou),"GONGYU", "01088888888"));
-        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.byunggyu),"Byung Gyu", "01077777777"));
-        list.add(mlistview(ContextCompat.getDrawable(this, R.drawable.jihoon),"Jihoon", "01036616302"));
+        list.add(mlistview(R.drawable.hodong,"HODONG", "01012341234")); //
+        list.add(mlistview(R.drawable.minah,"MINA", "01088888888")); //
+        list.add(mlistview(R.drawable.taehyun,"TAEHYUN", "01023428888")); //
+        list.add(mlistview(R.drawable.irene,"IRENE", "01099999999")); //
+        list.add(mlistview(R.drawable.gongyou,"GONGYU", "01088888888")); //
+        list.add(mlistview(R.drawable.byunggyu,"Byung Gyu", "01077777777")); //
+        list.add(mlistview(R.drawable.jihoon,"Jihoon", "01036616302")); //
 /*
         if(mCursor != null) {
             if (mCursor.moveToFirst()) {
@@ -144,7 +136,7 @@ public class PhoneNumber extends AppCompatActivity {
             }
         }*/
     }
-    public ListViewItem mlistview(Drawable icon, String title, String desc){
+    public ListViewItem mlistview(int icon, String title, String desc){
         ListViewItem item = new ListViewItem();
         item.setIcon(icon);
         item.setTitle(title);

@@ -65,20 +65,14 @@ public class ListViewAdapter extends BaseAdapter {
             viewHolder = (ValueHolder)convertView.getTag();
         }
         ListViewItem listViewItem = list.get(position);
-        viewHolder.icon.setImageDrawable(listViewItem.getIcon());
+        viewHolder.icon.setImageResource(listViewItem.getIcon());
         viewHolder.title.setText(listViewItem.getTitle());
         viewHolder.desc.setText(listViewItem.getDesc());
-/*
-        ImageView iconImageView = (ImageView) convertView.findViewById(R.id.imageview1);
-        TextView titleTextView = (TextView) convertView.findViewById(R.id.textview1);
-        TextView descTextView = (TextView) convertView.findViewById(R.id.textview2);
 
-        ListViewItem listViewItem = listViewItemList.get(position);
+        /*ImageClickListener imageViewClickListener = new ImageClickListener(context, list.get(position).getIcon());
+        convertView.setOnClickListener(imageViewClickListener);
+        convertView.setTag(list.get(position).getIcon());*/
 
-        iconImageView.setImageDrawable(listViewItem.getIcon());
-        titleTextView.setText(listViewItem.getTitle());
-        descTextView.setText(listViewItem.getDesc());
-*/
         return convertView;
     }/*
     public void addItem(Drawable icon, String title, String desc){
